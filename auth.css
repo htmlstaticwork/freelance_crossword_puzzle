@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* Authentication Pages Specific Styles */
 
 :root {
@@ -103,6 +109,11 @@ body.auth-page {
   transition: all 0.3s ease;
 }
 
+/* Ensure text doesn't hide behind the password toggle icon */
+.input-wrapper input[type="password"] {
+  padding-right: 3.5rem;
+}
+
 .input-wrapper input:focus {
   outline: none;
   border-color: var(--auth-accent);
@@ -131,6 +142,8 @@ body.auth-page {
   justify-content: space-between;
   align-items: center;
   font-size: 0.85rem;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .checkbox-group {
@@ -207,7 +220,7 @@ body.auth-page {
 
 .btn-social {
   width: 100%;
-  padding: 0.9rem;
+  padding: 1rem;
   background: var(--auth-input-bg);
   border: 1px solid var(--auth-border);
   border-radius: 12px;
@@ -217,22 +230,24 @@ body.auth-page {
   gap: 12px;
   color: var(--auth-text);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   text-decoration: none;
-  transition: all 0.3s;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .btn-social:hover {
   background: var(--auth-border);
   border-color: var(--auth-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn-social i {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
-.fa-google { color: #DB4437; }
-.fa-apple { color: var(--auth-text); }
+.btn-social.google i { color: #DB4437; }
+.btn-social.apple i { color: var(--auth-text); }
 
 /* Switch Auth Mode */
 .auth-switch {
@@ -279,7 +294,44 @@ body.auth-page {
   color: var(--auth-accent);
 }
 
-/* RTL Support */
+/* Responsive Styles */
+@media (max-width: 480px) {
+  body.auth-page {
+    padding: 1rem;
+  }
+
+  .auth-card {
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+  }
+
+  .auth-card .logo {
+    font-size: 1.8rem;
+  }
+
+  .auth-card h2 {
+    font-size: 1.3rem;
+  }
+
+  .top-controls {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .control-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .form-options {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 0.8rem;
+  }
+}
+
 [dir="rtl"] .auth-card {
   text-align: right;
 }
@@ -292,9 +344,4 @@ body.auth-page {
 [dir="rtl"] .toggle-password {
   right: auto;
   left: 1.2rem;
-}
-
-[dir="rtl"] .btn-small {
-  margin-left: 0;
-  margin-right: 1rem;
 }

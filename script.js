@@ -110,6 +110,33 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+// Active Navigation Highlight
+const navObserverOptions = {
+  root: null,
+  rootMargin: '-20% 0px -70% 0px',
+  threshold: 0
+};
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      if (id) {
+        document.querySelectorAll('.nav-links a, .mobile-nav-links a').forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    }
+  });
+}, navObserverOptions);
+
+document.querySelectorAll('header.hero, section.section, footer').forEach(section => {
+  navObserver.observe(section);
+});
+
 // FAQ Accordion
 document.querySelectorAll('.faq-question').forEach(button => {
   button.addEventListener('click', () => {
