@@ -982,10 +982,18 @@ footer {
   .logo { font-size: 1.3rem; }
 
   /* Layouts */
-  .section-grid, .stats-grid, .theme-grid, .process-steps, .pricing-grid {
+  .section-grid, .theme-grid, .process-steps, .pricing-grid {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     justify-items: center;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    justify-items: stretch;
+  }
+  .stats-grid .stat-card {
+    width: 100%;
   }
   .hero h1 { font-size: 4rem; }
 }
@@ -1033,14 +1041,18 @@ footer {
 
   /* Stats & Layouts: Keep straight lines as long as possible */
   .stats-grid {
-    grid-template-columns: repeat(4, 1fr);
-    overflow-x: auto;
-    padding-bottom: 1rem;
+    grid-template-columns: 1fr;
+    overflow-x: hidden;
+    padding-bottom: 0;
     gap: 15px;
+    justify-items: center;
   }
   
   .stat-card {
-    min-width: 150px;
+    min-width: unset;
+    padding: 2rem 1.5rem;
+    width: 100%;
+    max-width: 350px;
   }
 
   .client-grid {
@@ -1083,6 +1095,9 @@ footer {
   }
   .footer-column {
     align-items: center;
+  }
+  .contact-info li {
+    justify-content: center;
   }
   .social-icons {
     justify-content: center;

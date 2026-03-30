@@ -309,6 +309,10 @@ body.auth-page {
     font-size: 1.8rem;
   }
 
+  .auth-card .logo-container {
+    margin-top: 1.5rem;
+  }
+
   .auth-card h2 {
     font-size: 1.3rem;
   }
