@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,19 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <!-- Navigation -->
   <nav class="navbar">
     <div class="nav-content">
-      <h2 class="logo">Cross Purposes</h2>
+      <a href="#home" class="logo-link"><h2 class="logo">Cross Purposes</h2></a>
       <div class="nav-links">
         <a href="#home">Home</a>
         <a href="#about">About</a>
@@ -23,9 +29,39 @@
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </div>
-      <button id="theme-toggle" class="toggle-btn">🌙</button>
+      <div class="nav-actions">
+        <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL"><i data-lucide="languages"></i></button>
+        <button id="theme-toggle" class="toggle-btn" title="Toggle Theme"><i data-lucide="moon"></i></button>
+        <a href="login.html" class="btn btn-small btn-auth">Login</a>
+        <button id="mobile-menu-toggle" class="toggle-btn" title="Open Menu"><i data-lucide="menu"></i></button>
+      </div>
     </div>
   </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+      <h2 class="logo">Cross Purposes</h2>
+      <button id="mobile-menu-close" class="toggle-btn" title="Close Menu"><i data-lucide="x"></i></button>
+    </div>
+    <div class="mobile-menu-content">
+      <div class="mobile-nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#puzzles">Portfolio</a>
+        <a href="#demo">Try Demo</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="mobile-nav-actions">
+        <div class="mobile-toggle-group">
+          <button id="mobile-rtl-toggle" class="toggle-btn" title="Toggle RTL"><i data-lucide="languages"></i></button>
+          <button id="mobile-theme-toggle" class="toggle-btn" title="Toggle Theme"><i data-lucide="moon"></i></button>
+        </div>
+        <a href="login.html" class="btn btn-auth mobile-full-btn">Login</a>
+      </div>
+    </div>
+  </div>
 
   <!-- 1. Hero Section -->
   <header id="home" class="hero">
@@ -46,11 +82,15 @@
       <div class="text-content">
         <span class="eyebrow">The Constructor</span>
         <h2>The Human Behind the Grid</h2>
-        <p>I am a dedicated cruciverbalist with over a decade of experience crafting intricate wordplay puzzles for national newspapers and digital platforms. My mission is to blend logic, trivia, and wit into seamless experiences that challenge and delight players across the globe.</p>
-        <p>From the New York Times to independent zines, my grids have been praised for their tightness, original themes, and "Aha!" moments.</p>
+        <p>I am a dedicated cruciverbalist with over a decade of experience crafting intricate wordplay puzzles for
+          national newspapers and digital platforms. My mission is to blend logic, trivia, and wit into seamless
+          experiences that challenge and delight players across the globe.</p>
+        <p>From the New York Times to independent zines, my grids have been praised for their tightness, original
+          themes, and "Aha!" moments.</p>
       </div>
       <div class="image-box">
-        <img src="constructor_portrait_1774674348414.png" alt="Artist at work" class="glass-image">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv3qr-OsvAo2Pw-j7biELnacswVO7NKa1B8A&s"
+          alt="Artist at work" class="glass-image">
       </div>
     </div>
   </section>
@@ -83,19 +123,22 @@
     <h2 class="centered">Recently Published</h2>
     <div class="gallery">
       <div class="gallery-item">
-        <img src="complex_crossword_grid_1774674366347.png" alt="Complex Grid Design" onclick="enlargeImage(this)">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT94doGBOJoOTzhuVIZRdP_62G2XSKC4fbH5w&s"
+          alt="Complex Grid Design" onclick="enlargeImage(this)">
         <div class="gallery-overlay">
           <span>The Sunday Times Jumbo</span>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1606326608601-9c6e5c8b5b5e" alt="NYT Style Puzzles" onclick="enlargeImage(this)">
+        <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjrVxVTjFhq3aWjdqNBzHJ3WXgknxWBDtNuA&s"
+          alt="NYT Style Puzzles" onclick="enlargeImage(this)">
         <div class="gallery-overlay">
           <span>Daily Mini Puzzles</span>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1580130775562-0f5c6f4e8c0f" alt="Clue Crafting" onclick="enlargeImage(this)">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlij8hKkMTrHpKShw6b9Y3s8iiMNiRY3UO5Q&s"
+          alt="Clue Crafting" onclick="enlargeImage(this)">
         <div class="gallery-overlay">
           <span>Special Event Grids</span>
         </div>
@@ -109,22 +152,26 @@
     <h2 class="centered">Signature Styles</h2>
     <div class="theme-grid">
       <div class="theme-card">
-        <div class="theme-icon">🧩</div>
+        <img src="https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?q=80&w=400&auto=format&fit=crop"
+          alt="Rebus Riddles" class="theme-img">
         <h3>Rebus Riddles</h3>
         <p>Puzzles that incorporate images or symbols into the grid.</p>
       </div>
       <div class="theme-card">
-        <div class="theme-icon">🔡</div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4RTPobbWzI0JQcNbXgQYYL-0ctul_7D-QGw&s"
+          alt="Wordplay Wonders" class="theme-img">
         <h3>Wordplay Wonders</h3>
         <p>Clever puns and double-entendres that reward lateral thinking.</p>
       </div>
       <div class="theme-card">
-        <div class="theme-icon">🎬</div>
+        <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5DjNZEFIJhoq87IxjAxRloocgk1HkqVNEHQ&s"
+          alt="Pop Culture Crosses" class="theme-img">
         <h3>Pop Culture Crosses</h3>
         <p>Themed puzzles focused on modern media and trends.</p>
       </div>
       <div class="theme-card">
-        <div class="theme-icon">📅</div>
+        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=400&auto=format&fit=crop"
+          alt="Event Specials" class="theme-img">
         <h3>Event Specials</h3>
         <p>Custom grids designed for weddings, birthdays, and corporate galas.</p>
       </div>
@@ -153,7 +200,9 @@
       </div>
     </div>
     <div class="process-image">
-      <img src="crossword_process_sketch_1774674429155.png" alt="Process Sketch" class="glass-image">
+      <img
+        src="https://images.unsplash.com/photo-1622228872091-94cddc5dc467?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="Process Sketch" class="glass-image">
     </div>
   </section>
 
@@ -163,11 +212,14 @@
       <div class="text-content">
         <span class="eyebrow">Featured Work</span>
         <h2>The "Pangram" Challenge</h2>
-        <p>A deep dive into one of my most complex constructions—a puzzle where every single letter of the alphabet was used at least once in across and down answers.</p>
+        <p>A deep dive into one of my most complex constructions—a puzzle where every single letter of the alphabet was
+          used at least once in across and down answers.</p>
         <a href="#" class="btn btn-small">Read Case Study</a>
       </div>
       <div class="image-box">
-        <img src="crossword_tools_artistic_1774674384927.png" alt="Tools of the Trade" class="glass-image">
+        <img
+          src=" https://thumbs.dreamstime.com/b/crossword-puzzle-game-kids-working-tools-educational-page-children-to-study-english-language-words-printable-181187577.jpg"
+          alt="Tools of the Trade" class="glass-image">
       </div>
     </div>
   </section>
@@ -177,10 +229,10 @@
     <span class="eyebrow centered">Play</span>
     <h2 class="centered">Interactive Mini Puzzle</h2>
     <p class="demo-desc centered">Try your hand at this 5×5 mini. Type letters — it will auto-advance.</p>
-    
+
     <div class="crossword-container">
       <div id="crossword-grid" class="crossword-grid"></div>
-      
+
       <div class="clues">
         <h3>Across</h3>
         <ul id="across-clues"></ul>
@@ -188,10 +240,17 @@
         <ul id="down-clues"></ul>
       </div>
     </div>
-    
+
     <div class="demo-controls">
-      <button onclick="checkAnswers()" class="btn check-btn">Check Answers</button>
-      <button onclick="resetPuzzle()" class="btn btn-outline">Reset Puzzle</button>
+      <div id="nav-controls">
+        <button onclick="prevPuzzle()" class="btn btn-outline btn-nav">← Prev</button>
+        <span id="puzzle-progress">1 / 4</span>
+        <button onclick="nextPuzzle()" class="btn btn-outline btn-nav">Next →</button>
+      </div>
+      <div class="action-btns">
+        <button onclick="checkAnswers()" class="btn check-btn">Check Answers</button>
+        <button onclick="resetPuzzle()" class="btn btn-outline">Reset Puzzle</button>
+      </div>
     </div>
     <p id="result-msg" class="result"></p>
   </section>
@@ -214,7 +273,8 @@
         </div>
       </div>
       <div class="image-box">
-        <img src="crossword_insights_detail_1774674408152.png" alt="Insights" class="glass-image">
+        <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM0goGRNdHBxySnNsvGLQGd3TdEx7p33kxoQ&s"
+          alt="Insights" class="glass-image">
       </div>
     </div>
   </section>
@@ -325,23 +385,63 @@
 
   <!-- 15. Footer Section -->
   <footer id="contact" class="reveal">
-    <div class="footer-content">
-      <div class="footer-brand">
+    <div class="footer-container">
+      <div class="footer-column brand">
         <h3 class="logo">Cross Purposes</h3>
-        <p>Premium Cruciverbalism • Chennai, India</p>
+        <p>Crafting premium cruciverbalism for elite publications and private events worldwide. Every grid is a journey,
+          every clue a discovery.</p>
+        <div class="social-icons">
+          <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="#">Twitter</a>
-        <a href="#">LinkedIn</a>
-        <a href="#">Portfolio</a>
+      <div class="footer-column">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#puzzles">Portfolio</a></li>
+          <li><a href="#demo">Try Demo</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#pricing">Standard Mini</a></li>
+          <li><a href="#pricing">Themed 15x15</a></li>
+          <li><a href="#pricing">Custom Event</a></li>
+          <li><a href="#commission">Commission</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <ul class="contact-info">
+          <li><i class="fas fa-envelope"></i> hello@crosspurposes.com</li>
+          <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+          <li><i class="fas fa-map-marker-alt"></i> Chennai, TN, India</li>
+        </ul>
       </div>
     </div>
-    <p class="copyright">&copy; 2026 Surya. All rights reserved.</p>
+    <div class="footer-bottom">
+      <p>&copy; 2026. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
   </footer>
 
   <!-- Lightbox -->
   <div id="lightbox" onclick="this.style.display='none'"></div>
 
+  <button id="back-to-top" title="Back to Top">
+    <i data-lucide="chevron-up"></i>
+  </button>
+
   <script src="script.js"></script>
 </body>
+
 </html>
