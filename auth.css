@@ -48,16 +48,42 @@ body.auth-page {
 }
 
 .auth-card .logo-container {
-  text-align: center;
+  display: flex;
+  justify-content: center;
   margin-bottom: 2.5rem;
+}
+
+.auth-card .logo-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.auth-card .logo-link:hover {
+  opacity: 0.9;
 }
 
 .auth-card .logo {
   font-family: 'Playfair Display', serif;
   font-size: 2.2rem;
   color: var(--auth-accent);
-  text-decoration: none;
   font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.auth-card .logo-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.auth-card .logo-link:hover .logo-icon {
+  transform: scale(1.1) rotate(8deg);
 }
 
 .auth-card h2 {

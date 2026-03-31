@@ -36,9 +36,43 @@ body {
 
 /* Typography */
 h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 700; line-height: 1; margin: 0; }
-.logo-link { text-decoration: none; color: inherit; display: flex; align-items: center; }
-.logo { font-size: 1.5rem; letter-spacing: -0.5px; color: var(--accent) !important; }
-.navbar .logo, .footer-column .logo { color: var(--accent) !important; }
+.logo-link { 
+  text-decoration: none; 
+  color: inherit; 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+  transition: all 0.3s ease;
+}
+
+.logo-link:hover {
+  opacity: 0.9;
+}
+
+.logo { 
+  font-family: var(--font-serif);
+  font-size: 1.5rem; 
+  letter-spacing: -0.5px; 
+  color: var(--accent) !important; 
+  margin: 0; 
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.logo-icon { 
+  width: 36px; 
+  height: 36px; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+  flex-shrink: 0; 
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logo-link:hover .logo-icon {
+  transform: scale(1.1) rotate(8deg);
+}
+
+.navbar .logo, .footer-column .logo, .mobile-menu .logo { color: var(--accent) !important; }
 .accent-text { color: var(--accent); }
 .eyebrow { 
   display: block; 
