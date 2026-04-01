@@ -172,18 +172,46 @@ body.auth-page {
   gap: 10px;
 }
 
-.checkbox-group {
+.checkbox-group, .agreement-group {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   cursor: pointer;
+  font-size: 0.85rem;
+  line-height: normal;
 }
 
-.checkbox-group input {
+.agreement-group {
+  margin-top: -0.2rem;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.checkbox-group input, .agreement-group input {
+  flex-shrink: 0;
   width: 16px;
   height: 16px;
   cursor: pointer;
   accent-color: var(--auth-accent);
+  margin: 0;
+}
+
+.agreement-group label {
+  cursor: pointer;
+  opacity: 0.9;
+  display: inline-block;
+}
+
+.agreement-group a {
+  color: var(--auth-accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.agreement-group a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
 }
 
 .forgot-password {
