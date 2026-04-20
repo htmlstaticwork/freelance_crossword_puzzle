@@ -1,195 +1,294 @@
-// Theme Toggle
-const toggleBtn = document.getElementById('theme-toggle');
-if (toggleBtn) {
-  let currentTheme = localStorage.getItem('theme') || 
-    (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-  
-  document.documentElement.setAttribute('data-theme', currentTheme);
-  updateThemeIcon(currentTheme);
+/* =====================================================
+   CROSS PURPOSES — Main Script
+   ===================================================== */
 
-  toggleBtn.addEventListener('click', () => {
-    let theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    updateThemeIcon(theme);
-  });
-}
+'use strict';
 
-function updateThemeIcon(theme) {
-  if (toggleBtn) {
-    toggleBtn.innerHTML = theme === 'light' ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
-    lucide.createIcons();
-  }
-}
+/* RTL Toggle */
+(function () {
+  const toggleBtn = document.getElementById('rtl-toggle');
+  const drawerToggle = document.getElementById('drawer-rtl-toggle');
 
-// RTL Toggle
-const rtlBtn = document.getElementById('rtl-toggle');
-if (rtlBtn) {
-  rtlBtn.addEventListener('click', () => {
-    const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
-    document.documentElement.setAttribute('dir', isRtl ? 'ltr' : 'rtl');
-    rtlBtn.innerHTML = isRtl ? '<i data-lucide="languages"></i>' : '<i data-lucide="align-right"></i>';
-    lucide.createIcons();
-  });
-}
+  if (!toggleBtn && !drawerToggle) return;
 
-// Back to Top Button
-const backToTopBtn = document.getElementById('back-to-top');
-if (backToTopBtn) {
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-      backToTopBtn.classList.add('visible');
-    } else {
-      backToTopBtn.classList.remove('visible');
-    }
-  });
-
-  backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-}
-
-// Initialize Lucide Icons on load
-document.addEventListener('DOMContentLoaded', () => {
-  lucide.createIcons();
-});
-
-// Mobile Menu Toggle
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-const mobileMenuClose = document.getElementById('mobile-menu-close');
-const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-
-if (mobileMenuToggle && mobileMenu) {
-  mobileMenuToggle.addEventListener('click', () => {
-    mobileMenu.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  });
-
-  const closeMenu = () => {
-    mobileMenu.classList.remove('active');
-    document.body.style.overflow = '';
+  const toggleRTL = () => {
+    const isRTL = document.documentElement.dir === 'rtl';
+    document.documentElement.dir = isRTL ? 'ltr' : 'rtl';
+    localStorage.setItem('rtl', !isRTL);
   };
 
-  mobileMenuClose.addEventListener('click', closeMenu);
-  
-  mobileNavLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-}
+  toggleBtn?.addEventListener('click', toggleRTL);
+  drawerToggle?.addEventListener('click', toggleRTL);
 
-// Mobile Toggles
-const mobileRtlBtn = document.getElementById('mobile-rtl-toggle');
-if (mobileRtlBtn) {
-  mobileRtlBtn.addEventListener('click', () => {
-    const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
-    document.documentElement.setAttribute('dir', isRtl ? 'ltr' : 'rtl');
-    mobileRtlBtn.innerHTML = isRtl ? '<i data-lucide="languages"></i>' : '<i data-lucide="align-right"></i>';
-    lucide.createIcons();
-  });
-}
+  // Persistence
+  if (localStorage.getItem('rtl') === 'true') {
+    document.documentElement.dir = 'rtl';
+  }
+})();
 
-const mobileThemeBtn = document.getElementById('mobile-theme-toggle');
-if (mobileThemeBtn) {
-  mobileThemeBtn.addEventListener('click', () => {
-    let theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    updateThemeIcon(theme);
-  });
-}
+/* Theme Toggle */
+(function () {
+  const themeBtn = document.getElementById('theme-toggle');
+  const drawerThemeBtn = document.getElementById('drawer-theme-toggle');
 
-// Smooth scrolling for navigation
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+  if (!themeBtn && !drawerThemeBtn) return;
+
+  const updateIcon = (theme) => {
+    const iconClass = theme === 'dark' ? 'fa-sun' : 'fa-moon';
+    [themeBtn, drawerThemeBtn].forEach(btn => {
+      if (btn) {
+        const icon = btn.querySelector('i');
+        if (icon) icon.className = `fas ${iconClass}`;
+      }
+    });
+  };
+
+  const toggleTheme = () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcon(newTheme);
+  };
+
+  themeBtn?.addEventListener('click', toggleTheme);
+  drawerThemeBtn?.addEventListener('click', toggleTheme);
+
+  // Initial Load
+  const savedTheme = localStorage.getItem('theme');
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = savedTheme || (systemDark ? 'dark' : 'light');
+
+  if (initialTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    updateIcon('dark');
+  }
+})();
+
+
+// ── Navbar scroll effect ───────────────────────────
+(function () {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+
+  // Always show as scrolled (dark) — the site has a dark hero
+  // but on initial load we still want it transparent-over-dark
+  const onScroll = () => {
+    if (window.scrollY > 40) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
     }
-  });
-});
+  };
 
-// Active Navigation Highlight
-const navObserverOptions = {
-  root: null,
-  rootMargin: '-20% 0px -70% 0px',
-  threshold: 0
-};
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
 
-const navObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.getAttribute('id');
-      if (id) {
-        document.querySelectorAll('.nav-links a, .mobile-nav-links a').forEach(link => {
+
+// ── Active nav link highlight ──────────────────────
+(function () {
+  const sections = document.querySelectorAll('section[id], header[id], footer[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
           link.classList.remove('active');
           if (link.getAttribute('href') === `#${id}`) {
             link.classList.add('active');
           }
         });
       }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+  sections.forEach(s => obs.observe(s));
+})();
+
+
+// ── Mobile Drawer ──────────────────────────────────
+(function () {
+  const hamburger  = document.getElementById('hamburger');
+  const drawer     = document.getElementById('mobile-drawer');
+  const overlay    = document.getElementById('drawer-overlay');
+  const closeBtn   = document.getElementById('drawer-close');
+  const drawerLinks = document.querySelectorAll('.drawer-links a, .drawer-btn');
+
+  if (!hamburger || !drawer) return;
+
+  const openDrawer = () => {
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeDrawer = () => {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  hamburger.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+  drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
+})();
+
+
+// ── Smooth scroll for all anchor links ────────────
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function (e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const navHeight = document.getElementById('navbar')?.offsetHeight || 72;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   });
-}, navObserverOptions);
-
-document.querySelectorAll('header.hero, section.section, footer').forEach(section => {
-  navObserver.observe(section);
 });
 
-// FAQ Accordion
-document.querySelectorAll('.faq-question').forEach(button => {
-  button.addEventListener('click', () => {
-    const item = button.parentElement;
-    item.classList.toggle('active');
-  });
-});
 
-// Scroll Reveal Observer
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      if (entry.target.id === 'stats') {
-        startCounters();
+// ── Scroll Reveal ──────────────────────────────────
+(function () {
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Trigger counters when the about section becomes visible
+        if (entry.target.id === 'about') {
+          startCounters();
+        }
+        revealObs.unobserve(entry.target);
       }
-    }
-  });
-}, { threshold: 0.1 });
+    });
+  }, { threshold: 0.1 });
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+})();
 
-// Stat Counters
+
+// ── Animated Stat Counters ─────────────────────────
+let countersStarted = false;
+
 function startCounters() {
-  const counters = document.querySelectorAll('.stat-number');
-  counters.forEach(counter => {
-    const target = +counter.getAttribute('data-target');
-    const updateCount = () => {
-      const count = +counter.innerText;
-      const speed = 200;
-      const inc = target / speed;
+  if (countersStarted) return;
+  countersStarted = true;
 
-      if (count < target) {
-        counter.innerText = Math.ceil(count + inc);
-        setTimeout(updateCount, 10);
-      } else {
-        counter.innerText = target + (target > 99 ? "+" : "");
+  document.querySelectorAll('.astat-num').forEach(counter => {
+    const target = parseInt(counter.getAttribute('data-target'), 10);
+    const duration = 1800;
+    const stepTime = 16;
+    const steps = Math.ceil(duration / stepTime);
+    let step = 0;
+
+    const timer = setInterval(() => {
+      step++;
+      const progress = step / steps;
+      // Ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(eased * target);
+      counter.textContent = current.toLocaleString();
+
+      if (step >= steps) {
+        clearInterval(timer);
+        if (target === 100) {
+          counter.textContent = '100%';
+        } else {
+          counter.textContent = target.toLocaleString() + '+';
+        }
       }
-    };
-    updateCount();
+    }, stepTime);
   });
 }
 
-// --- Enhanced Multi-Puzzle Crossword Logic ---
+
+// ── FAQ Accordion ──────────────────────────────────
+(function () {
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item    = btn.closest('.faq-item');
+      const answer  = item.querySelector('.faq-a');
+      const isOpen  = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(openItem => {
+        openItem.classList.remove('open');
+        openItem.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        openItem.querySelector('.faq-a').style.maxHeight = '0';
+      });
+
+      // Open clicked (if it wasn't already open)
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+})();
+
+
+// ── Commission Form ────────────────────────────────
+(function () {
+  const form = document.getElementById('commission-form');
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('[type="submit"]');
+    const origText = btn.innerHTML;
+
+    btn.innerHTML = '<i class="fas fa-check"></i> Inquiry Sent!';
+    btn.disabled = true;
+    btn.style.background = '#2e7d32';
+
+    setTimeout(() => {
+      btn.innerHTML = origText;
+      btn.disabled = false;
+      btn.style.background = '';
+      form.reset();
+    }, 3500);
+  });
+})();
+
+
+// ── Back to Top ────────────────────────────────────
+(function () {
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.pageYOffset > 400);
+  }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
+
+// ══════════════════════════════════════════════════
+// CROSSWORD MINI PUZZLE ENGINE
+// ══════════════════════════════════════════════════
 
 const puzzles = [
   {
-    title: "Puzzle 1: The Greeting",
+    title: 'Puzzle 1: The Greeting',
     gridSize: 5,
-    blackCells: [[1,1], [1,3], [3,1], [3,3]],
+    blackCells: [[1, 1], [1, 3], [3, 1], [3, 3]],
     clues: {
-      across: ["1. Common greeting (5)", "4. Loud sound (5)", "5. Bread riser (5)"],
-      down: ["1. Bee's creation (5)", "2. Fill with joy (5)", "3. Memory aids (5)"]
+      across: ['1. Common greeting (5)', '4. Loud disturbance (5)', '5. Bread riser (5)'],
+      down:   ['1. Bee\'s creation (5)', '2. Fill with joy (5)', '3. Memory aids (5)']
     },
     solution: [
       ['H','E','L','L','O'],
@@ -200,12 +299,12 @@ const puzzles = [
     ]
   },
   {
-    title: "Puzzle 2: Deep Space",
+    title: 'Puzzle 2: Deep Space',
     gridSize: 5,
-    blackCells: [[1,1], [1,3], [3,1], [3,3]],
+    blackCells: [[1, 1], [1, 3], [3, 1], [3, 3]],
     clues: {
-      across: ["1. Night sky twinklers (5)", "3. Relating to the moon (5)", "5. Moon samples (5)"],
-      down: ["1. Relating to the sun (5)", "2. Small amount (5)", "3. Not dull (5)"]
+      across: ['1. Night sky twinklers (5)', '3. Relating to the moon (5)', '5. Moon samples (5)'],
+      down:   ['1. Relating to the sun (5)', '2. Small amount (5)', '3. Not dull (5)']
     },
     solution: [
       ['S','T','A','R','S'],
@@ -216,12 +315,12 @@ const puzzles = [
     ]
   },
   {
-    title: "Puzzle 3: Green Thumb",
+    title: 'Puzzle 3: Green Thumb',
     gridSize: 5,
-    blackCells: [[1,1], [1,3], [3,1], [3,3]],
+    blackCells: [[1, 1], [1, 3], [3, 1], [3, 3]],
     clues: {
-      across: ["1. Garden inhabitant (5)", "3. Forbidden fruit? (5)", "5. Mouth parts (5)"],
-      down: ["1. Garden inhabitant (5)", "2. Metal mixture (5)", "3. Mouth parts (5)"]
+      across: ['1. Garden inhabitant (5)', '3. Forbidden fruit? (5)', '5. Dental display (5)'],
+      down:   ['1. Growth from seed (5)', '2. Metal mixture (5)', '3. Dental display (5)']
     },
     solution: [
       ['P','L','A','N','T'],
@@ -232,12 +331,12 @@ const puzzles = [
     ]
   },
   {
-    title: "Puzzle 4: Digital World",
+    title: 'Puzzle 4: Digital World',
     gridSize: 5,
-    blackCells: [[1,1], [1,3], [3,1], [3,3]],
+    blackCells: [[1, 1], [1, 3], [3, 1], [3, 3]],
     clues: {
-      across: ["1. Computer pointer (5)", "3. Single number (5)", "5. Internet box (5)"],
-      down: ["1. Internet box (5)", "2. Manner of use (5)", "3. Keyboard key (5)"]
+      across: ['1. Computer pointer (5)', '3. Single numeric unit (5)', '5. Internet device (5)'],
+      down:   ['1. Internet device (5)', '2. Way of doing (5)', '3. Keyboard key (5)']
     },
     solution: [
       ['M','O','U','S','E'],
@@ -250,195 +349,186 @@ const puzzles = [
 ];
 
 let currentPuzzleIndex = 0;
-let grid = [];
+let gridCells = [];
 
 function createCrossword() {
-  const container = document.getElementById('crossword-grid');
+  const container   = document.getElementById('crossword-grid');
   const acrossClues = document.getElementById('across-clues');
-  const downClues = document.getElementById('down-clues');
-  const puzzleTitle = document.querySelector('.demo-section h2');
-  const resultMsg = document.getElementById('result-msg');
+  const downClues   = document.getElementById('down-clues');
+  const titleEl     = document.getElementById('puzzle-title-display');
+  const resultMsg   = document.getElementById('result-msg');
 
   if (!container) return;
 
   const puzzle = puzzles[currentPuzzleIndex];
-  puzzleTitle.textContent = puzzle.title;
+
+  // Update title and clues
+  if (titleEl) titleEl.textContent = puzzle.title;
+  if (acrossClues) acrossClues.innerHTML = puzzle.clues.across.map(c => `<li>${c}</li>`).join('');
+  if (downClues)   downClues.innerHTML   = puzzle.clues.down.map(c => `<li>${c}</li>`).join('');
+  if (resultMsg)   { resultMsg.textContent = ''; resultMsg.className = 'result-msg'; }
+
   container.innerHTML = '';
-  acrossClues.innerHTML = puzzle.clues.across.map(c => `<li>${c}</li>`).join('');
-  downClues.innerHTML = puzzle.clues.down.map(c => `<li>${c}</li>`).join('');
-  resultMsg.textContent = '';
-  grid = [];
+  gridCells = [];
 
   for (let r = 0; r < puzzle.gridSize; r++) {
-    grid[r] = [];
+    gridCells[r] = [];
     for (let c = 0; c < puzzle.gridSize; c++) {
       const cell = document.createElement('div');
       cell.classList.add('cell');
-      
-      if (puzzle.blackCells.some(([br,bc]) => br===r && bc===c)) {
+
+      if (puzzle.blackCells.some(([br, bc]) => br === r && bc === c)) {
         cell.classList.add('black');
       } else {
-        cell.contentEditable = true;
-        cell.spellcheck = false;
-        cell.dataset.row = r;
-        cell.dataset.col = c;
-        
+        cell.contentEditable = 'true';
+        cell.spellcheck      = false;
+        cell.autocomplete    = 'off';
+        cell.dataset.row     = r;
+        cell.dataset.col     = c;
+
         cell.addEventListener('input', (e) => {
-          let text = e.target.textContent.toUpperCase().trim();
+          let text = (e.target.textContent || '').toUpperCase().replace(/\s/g, '');
           if (text.length > 1) text = text.charAt(text.length - 1);
           e.target.textContent = text;
+
+          // Move cursor to end
+          const range = document.createRange();
+          const sel   = window.getSelection();
+          range.selectNodeContents(e.target);
+          range.collapse(false);
+          sel.removeAllRanges();
+          sel.addRange(range);
+
           if (text) moveToNextCell(r, c);
         });
-        
+
         cell.addEventListener('keydown', (e) => {
           if (e.key === 'Backspace' && !e.target.textContent) {
+            e.preventDefault();
             moveToPrevCell(r, c);
           } else if (e.key === 'ArrowRight') {
-            moveToNextCell(r, c);
+            e.preventDefault(); moveToNextCell(r, c);
           } else if (e.key === 'ArrowLeft') {
-            moveToPrevCell(r, c);
+            e.preventDefault(); moveToPrevCell(r, c);
           } else if (e.key === 'ArrowDown') {
-             moveVertical(r, c, 1);
+            e.preventDefault(); moveVertical(r, c, 1);
           } else if (e.key === 'ArrowUp') {
-             moveVertical(r, c, -1);
+            e.preventDefault(); moveVertical(r, c, -1);
           }
         });
+
+        cell.addEventListener('focus', () => {
+          // Select all on focus so typing replaces existing letter
+          const range = document.createRange();
+          range.selectNodeContents(cell);
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        });
       }
+
       container.appendChild(cell);
-      grid[r][c] = cell;
+      gridCells[r][c] = cell;
     }
   }
+
+  updateProgressDisplay();
 }
 
 function moveToNextCell(row, col) {
-  let nextCol = col + 1;
-  let nextRow = row;
-  if (nextCol >= puzzles[currentPuzzleIndex].gridSize) {
-    nextCol = 0;
-    nextRow++;
-  }
-  if (nextRow < puzzles[currentPuzzleIndex].gridSize) {
-    if (grid[nextRow][nextCol].classList.contains('black')) {
-      moveToNextCell(nextRow, nextCol);
-    } else {
-      grid[nextRow][nextCol].focus();
+  const size = puzzles[currentPuzzleIndex].gridSize;
+  let r = row, c = col + 1;
+  if (c >= size) { c = 0; r++; }
+  while (r < size) {
+    if (!gridCells[r][c].classList.contains('black')) {
+      gridCells[r][c].focus(); return;
     }
+    c++;
+    if (c >= size) { c = 0; r++; }
   }
 }
 
 function moveToPrevCell(row, col) {
-  let prevCol = col - 1;
-  let prevRow = row;
-  if (prevCol < 0) {
-    prevCol = puzzles[currentPuzzleIndex].gridSize - 1;
-    prevRow--;
-  }
-  if (prevRow >= 0) {
-    if (grid[prevRow][prevCol].classList.contains('black')) {
-      moveToPrevCell(prevRow, prevCol);
-    } else {
-      grid[prevRow][prevCol].focus();
+  const size = puzzles[currentPuzzleIndex].gridSize;
+  let r = row, c = col - 1;
+  if (c < 0) { c = size - 1; r--; }
+  while (r >= 0) {
+    if (!gridCells[r][c].classList.contains('black')) {
+      gridCells[r][c].focus(); return;
     }
+    c--;
+    if (c < 0) { c = size - 1; r--; }
   }
 }
 
 function moveVertical(row, col, dir) {
-  let nextRow = row + dir;
-  if (nextRow >= 0 && nextRow < puzzles[currentPuzzleIndex].gridSize) {
-    if (grid[nextRow][col].classList.contains('black')) {
-       // skip black if possible or just stay
-    } else {
-       grid[nextRow][col].focus();
+  const size = puzzles[currentPuzzleIndex].gridSize;
+  let r = row + dir;
+  while (r >= 0 && r < size) {
+    if (!gridCells[r][col].classList.contains('black')) {
+      gridCells[r][col].focus(); return;
     }
+    r += dir;
   }
 }
 
 function checkAnswers() {
-  const puzzle = puzzles[currentPuzzleIndex];
-  const msg = document.getElementById('result-msg');
-  let correct = true;
+  const puzzle  = puzzles[currentPuzzleIndex];
+  const msg     = document.getElementById('result-msg');
+  let allCorrect = true;
 
   for (let r = 0; r < puzzle.gridSize; r++) {
     for (let c = 0; c < puzzle.gridSize; c++) {
-      if (!grid[r][c].classList.contains('black')) {
-        const char = grid[r][c].textContent.toUpperCase();
+      const cell = gridCells[r][c];
+      if (!cell.classList.contains('black')) {
+        const char = (cell.textContent || '').toUpperCase().trim();
         if (char !== puzzle.solution[r][c]) {
-          correct = false;
-          grid[r][c].classList.add('error');
-          setTimeout(() => grid[r][c].classList.remove('error'), 1000);
+          allCorrect = false;
+          cell.classList.add('error');
+          setTimeout(() => cell.classList.remove('error'), 800);
         }
       }
     }
   }
 
-  if (correct) {
-    msg.textContent = "✨ Correct! You've mastered this grid.";
-    msg.className = "result success";
-    if (currentPuzzleIndex < puzzles.length - 1) {
-      setTimeout(() => {
-        nextPuzzle();
-        updateProgressDisplay();
-      }, 2000);
+  if (msg) {
+    if (allCorrect) {
+      msg.textContent = '✨ Correct! You\'ve mastered this grid.';
+      msg.className   = 'result-msg success';
+      if (currentPuzzleIndex < puzzles.length - 1) {
+        setTimeout(() => { nextPuzzle(); }, 2200);
+      }
+    } else {
+      msg.textContent = '✗ Not quite — check the highlighted cells.';
+      msg.className   = 'result-msg error-msg';
     }
-  } else {
-    msg.textContent = "❌ Not quite right. Keep trying!";
-    msg.className = "result error-msg";
   }
 }
 
-function resetPuzzle() {
-  createCrossword();
-}
+function resetPuzzle() { createCrossword(); }
 
 function nextPuzzle() {
   currentPuzzleIndex = (currentPuzzleIndex + 1) % puzzles.length;
   createCrossword();
-  updateProgressDisplay();
 }
 
 function prevPuzzle() {
   currentPuzzleIndex = (currentPuzzleIndex - 1 + puzzles.length) % puzzles.length;
   createCrossword();
-  updateProgressDisplay();
 }
-
-// Lightbox
-function enlargeImage(img) {
-  const lightbox = document.getElementById('lightbox');
-  lightbox.innerHTML = `<img src="${img.src}" alt="${img.alt}">`;
-  lightbox.style.display = 'flex';
-}
-
-// Initialize
-window.addEventListener('DOMContentLoaded', () => {
-  createCrossword();
-  
-  // Add Nav buttons to demo controls dynamically if not in HTML
-  const controls = document.querySelector('.demo-controls');
-  if (controls && !document.getElementById('nav-controls')) {
-    const navDiv = document.createElement('div');
-    navDiv.id = 'nav-controls';
-    navDiv.style.marginTop = '1rem';
-    navDiv.innerHTML = `
-      <button onclick="prevPuzzle()" class="btn btn-outline" style="padding: 0.5rem 1rem">← Prev</button>
-      <span id="puzzle-progress" style="margin: 0 1rem; font-weight: 600;"></span>
-      <button onclick="nextPuzzle()" class="btn btn-outline" style="padding: 0.5rem 1rem">Next →</button>
-    `;
-    controls.appendChild(navDiv);
-  }
-  
-  updateProgressDisplay();
-});
 
 function updateProgressDisplay() {
-  const progress = document.getElementById('puzzle-progress');
-  if (progress) {
-    progress.textContent = `${currentPuzzleIndex + 1} / ${puzzles.length}`;
-  }
+  const el = document.getElementById('puzzle-progress');
+  if (el) el.textContent = `${currentPuzzleIndex + 1} / ${puzzles.length}`;
 }
 
-// Wrap functions for global access
+// Expose to global scope (called by inline onclick attributes)
 window.checkAnswers = checkAnswers;
-window.resetPuzzle = resetPuzzle;
-window.nextPuzzle = nextPuzzle;
-window.prevPuzzle = prevPuzzle;
+window.resetPuzzle  = resetPuzzle;
+window.nextPuzzle   = nextPuzzle;
+window.prevPuzzle   = prevPuzzle;
+
+// ── Init ───────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  createCrossword();
+});

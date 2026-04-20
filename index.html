@@ -2,516 +2,646 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cross Purposes | Freelance Crossword Constructor</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%23ffd700' width='32' height='32'/><rect fill='%23000' x='2' y='2' width='8' height='8'/><rect fill='%23000' x='12' y='2' width='8' height='8'/><rect fill='%23000' x='22' y='2' width='8' height='8'/><rect fill='%23000' x='2' y='12' width='8' height='8'/><rect fill='%23000' x='12' y='12' width='8' height='8'/><rect fill='%23000' x='22' y='12' width='8' height='8'/><rect fill='%23000' x='2' y='22' width='8' height='8'/><rect fill='%23000' x='12' y='22' width='8' height='8'/><rect fill='%23000' x='22' y='22' width='8' height='8'/><rect fill='%23ffd700' x='6' y='6' width='4' height='4'/><rect fill='%23ffd700' x='16' y='6' width='4' height='4'/><rect fill='%23ffd700' x='26' y='6' width='4' height='4'/><rect fill='%23ffd700' x='6' y='16' width='4' height='4'/><rect fill='%23ffd700' x='16' y='16' width='4' height='4'/><rect fill='%23ffd700' x='26' y='16' width='4' height='4'/><rect fill='%23ffd700' x='6' y='26' width='4' height='4'/><rect fill='%23ffd700' x='16' y='26' width='4' height='4'/><rect fill='%23ffd700' x='26' y='26' width='4' height='4'/></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross Purposes | Freelance Crossword Constructor</title>
+    <meta name="description"
+        content="Cross Purposes — crafting clever crossword grids for the world's finest publications. Commission a bespoke puzzle from an award-winning cruciverbalist.">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%23C9A84C' width='32' height='32' rx='4'/><rect fill='%230D1B2A' x='2' y='2' width='8' height='8'/><rect fill='%230D1B2A' x='22' y='2' width='8' height='8'/><rect fill='%230D1B2A' x='12' y='12' width='8' height='8'/><rect fill='%230D1B2A' x='2' y='22' width='8' height='8'/><rect fill='%230D1B2A' x='22' y='22' width='8' height='8'/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-content">
-      <a href="#home" class="logo-link">
-        <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-          <rect fill="#ffd700" width="32" height="32" rx="6"/>
-          <rect fill="#000" x="2" y="2" width="8" height="8"/>
-          <rect fill="#000" x="12" y="2" width="8" height="8"/>
-          <rect fill="#000" x="22" y="2" width="8" height="8"/>
-          <rect fill="#000" x="2" y="12" width="8" height="8"/>
-          <rect fill="#000" x="12" y="12" width="8" height="8"/>
-          <rect fill="#000" x="22" y="12" width="8" height="8"/>
-          <rect fill="#000" x="2" y="22" width="8" height="8"/>
-          <rect fill="#000" x="12" y="22" width="8" height="8"/>
-          <rect fill="#000" x="22" y="22" width="8" height="8"/>
-          <rect fill="#ffd700" x="6" y="6" width="4" height="4"/>
-          <rect fill="#ffd700" x="16" y="6" width="4" height="4"/>
-          <rect fill="#ffd700" x="26" y="6" width="4" height="4"/>
-          <rect fill="#ffd700" x="6" y="16" width="4" height="4"/>
-          <rect fill="#ffd700" x="16" y="16" width="4" height="4"/>
-          <rect fill="#ffd700" x="26" y="16" width="4" height="4"/>
-          <rect fill="#ffd700" x="6" y="26" width="4" height="4"/>
-          <rect fill="#ffd700" x="16" y="26" width="4" height="4"/>
-          <rect fill="#ffd700" x="26" y="26" width="4" height="4"/>
-        </svg>
-        <span class="logo">Cross Purposes</span>
-      </a>
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#puzzles">Portfolio</a>
-        <a href="#demo">Try Demo</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="nav-actions">
-        <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL"><i data-lucide="languages"></i></button>
-        <button id="theme-toggle" class="toggle-btn" title="Toggle Theme"><i data-lucide="moon"></i></button>
-        <a href="login.html" class="btn btn-small btn-auth">Login</a>
-        <button id="mobile-menu-toggle" class="toggle-btn" title="Open Menu"><i data-lucide="menu"></i></button>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Mobile Menu Overlay -->
-  <div id="mobile-menu" class="mobile-menu">
-    <div class="mobile-menu-header">
-      <a href="index.html" class="logo-link">
-        <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-          <rect fill="#ffd700" width="32" height="32" rx="6"/>
-          <rect fill="#000" x="2" y="2" width="8" height="8"/>
-          <rect fill="#000" x="12" y="2" width="8" height="8"/>
-          <rect fill="#000" x="22" y="2" width="8" height="8"/>
-          <rect fill="#000" x="2" y="12" width="8" height="8"/>
-          <rect fill="#000" x="12" y="12" width="8" height="8"/>
-          <rect fill="#000" x="22" y="12" width="8" height="8"/>
-          <rect fill="#000" x="2" y="22" width="8" height="8"/>
-          <rect fill="#000" x="12" y="22" width="8" height="8"/>
-          <rect fill="#000" x="22" y="22" width="8" height="8"/>
-          <rect fill="#ffd700" x="6" y="6" width="4" height="4"/>
-          <rect fill="#ffd700" x="16" y="6" width="4" height="4"/>
-          <rect fill="#ffd700" x="26" y="6" width="4" height="4"/>
-          <rect fill="#ffd700" x="6" y="16" width="4" height="4"/>
-          <rect fill="#ffd700" x="16" y="16" width="4" height="4"/>
-          <rect fill="#ffd700" x="26" y="16" width="4" height="4"/>
-          <rect fill="#ffd700" x="6" y="26" width="4" height="4"/>
-          <rect fill="#ffd700" x="16" y="26" width="4" height="4"/>
-          <rect fill="#ffd700" x="26" y="26" width="4" height="4"/>
-        </svg>
-        <span class="logo">Cross Purposes</span>
-      </a>
-      <button id="mobile-menu-close" class="toggle-btn" title="Close Menu"><i data-lucide="x"></i></button>
-    </div>
-    <div class="mobile-menu-content">
-      <div class="mobile-nav-links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#puzzles">Portfolio</a>
-        <a href="#demo">Try Demo</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="mobile-nav-actions">
-        <div class="mobile-toggle-group">
-          <button id="mobile-rtl-toggle" class="toggle-btn" title="Toggle RTL"><i data-lucide="languages"></i></button>
-          <button id="mobile-theme-toggle" class="toggle-btn" title="Toggle Theme"><i data-lucide="moon"></i></button>
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#home" class="nav-logo">
+                <div class="logo-grid-icon">
+                    <span class="lg-cell dark"></span>
+                    <span class="lg-cell light"></span>
+                    <span class="lg-cell dark"></span>
+                    <span class="lg-cell light"></span>
+                    <span class="lg-cell dark"></span>
+                    <span class="lg-cell dark"></span>
+                    <span class="lg-cell light"></span>
+                    <span class="lg-cell dark"></span>
+                    <span class="lg-cell dark"></span>
+                </div>
+                <span class="logo-text">Cross&nbsp;<em>Purposes</em></span>
+            </a>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#published" class="nav-link">Published Work</a></li>
+                <li><a href="#demo" class="nav-link">Try a Puzzle</a></li>
+                <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#commission" class="nav-link nav-cta">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="rtl-toggle" class="nav-toggle" title="Toggle Right-to-Left">
+                    <i class="fas fa-right-left"></i>
+                </button>
+                <button id="theme-toggle" class="nav-toggle" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
-        <a href="login.html" class="btn btn-auth mobile-full-btn">Login</a>
-      </div>
-    </div>
-  </div>
+    </nav>
 
-  <!-- 1. Hero Section -->
-  <header id="home" class="hero">
-    <div class="grid-bg"></div>
-    <div class="content reveal">
-      <h1 class="accent-text">Cross Purposes</h1>
-      <p class="tagline">Crafting clever grids for the world's finest publications.</p>
-      <div class="hero-btns">
-        <a href="#demo" class="btn">Try a Mini Puzzle</a>
-        <a href="#puzzles" class="btn btn-outline">View Portfolio</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- 2. About Section -->
-  <section id="about" class="section about reveal">
-    <div class="section-grid">
-      <div class="text-content">
-        <span class="eyebrow">The Constructor</span>
-        <h2>The Human Behind the Grid</h2>
-        <p>I am a dedicated cruciverbalist with over a decade of experience crafting intricate wordplay puzzles for
-          national newspapers and digital platforms. My mission is to blend logic, trivia, and wit into seamless
-          experiences that challenge and delight players across the globe.</p>
-        <p>From the New York Times to independent zines, my grids have been praised for their tightness, original
-          themes, and "Aha!" moments.</p>
-      </div>
-      <div class="image-box">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv3qr-OsvAo2Pw-j7biELnacswVO7NKa1B8A&s"
-          alt="Artist at work" class="glass-image">
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. Statistics Section -->
-  <section id="stats" class="section stats reveal">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <h3 class="stat-number" data-target="500">0</h3>
-        <p>Puzzles Published</p>
-      </div>
-      <div class="stat-card">
-        <h3 class="stat-number" data-target="25000">0</h3>
-        <p>Individual Clues</p>
-      </div>
-      <div class="stat-card">
-        <h3 class="stat-number" data-target="15">0</h3>
-        <p>Major Publications</p>
-      </div>
-      <div class="stat-card">
-        <h3 class="stat-number" data-target="100">0</h3>
-        <p>% Hand-Crafted</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. Published Puzzles Section -->
-  <section id="puzzles" class="section reveal">
-    <span class="eyebrow centered">Gallery</span>
-    <h2 class="centered">Recently Published</h2>
-    <div class="gallery">
-      <div class="gallery-item">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT94doGBOJoOTzhuVIZRdP_62G2XSKC4fbH5w&s"
-          alt="Complex Grid Design" onclick="enlargeImage(this)">
-        <div class="gallery-overlay">
-          <span>The Sunday Times Jumbo</span>
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+        <div class="drawer-inner">
+            <button class="drawer-close" id="drawer-close" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="#home" class="drawer-logo">Cross <em>Purposes</em></a>
+            <ul class="drawer-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#published">Published Work</a></li>
+                <li><a href="#demo">Try a Puzzle</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#commission">Contact</a></li>
+            </ul>
+            <div class="drawer-actions">
+                <button id="drawer-rtl-toggle" class="drawer-toggle">
+                    <i class="fas fa-right-left"></i> Toggle Layout (RTL)
+                </button>
+                <button id="drawer-theme-toggle" class="drawer-toggle">
+                    <i class="fas fa-moon"></i> Toggle Dark Mode
+                </button>
+                <a href="#commission" class="btn btn-gold drawer-btn">Commission a Puzzle</a>
+            </div>
         </div>
-      </div>
-      <div class="gallery-item">
-        <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjrVxVTjFhq3aWjdqNBzHJ3WXgknxWBDtNuA&s"
-          alt="NYT Style Puzzles" onclick="enlargeImage(this)">
-        <div class="gallery-overlay">
-          <span>Daily Mini Puzzles</span>
+    </div>
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+
+    <!-- ===================== HERO ===================== -->
+    <header id="home" class="hero">
+        <div class="hero-grid-bg" aria-hidden="true">
+            <div class="hgb-inner"></div>
         </div>
-      </div>
-      <div class="gallery-item">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlij8hKkMTrHpKShw6b9Y3s8iiMNiRY3UO5Q&s"
-          alt="Clue Crafting" onclick="enlargeImage(this)">
-        <div class="gallery-overlay">
-          <span>Special Event Grids</span>
+        <div class="hero-content reveal">
+            <p class="hero-eyebrow">Cruciverbalist · Constructor · Wordsmith</p>
+            <h1 class="hero-wordmark">
+                <span class="wordmark-row">
+                    <span class="wm-box dark">C</span><span class="wm-box light">R</span><span
+                        class="wm-box dark">O</span><span class="wm-box light">S</span><span
+                        class="wm-box dark">S</span>
+                </span>
+                <span class="wordmark-divider" aria-hidden="true">×</span>
+                <span class="wordmark-row">
+                    <span class="wm-box light">P</span><span class="wm-box dark">U</span><span
+                        class="wm-box light">R</span><span class="wm-box dark">P</span><span
+                        class="wm-box light">O</span><span class="wm-box dark">S</span><span
+                        class="wm-box light">E</span><span class="wm-box dark">S</span>
+                </span>
+            </h1>
+            <p class="hero-tagline">Every clue tells a story.<br>Every grid is a puzzle waiting to be solved.</p>
+            <p class="hero-sub">Crafting clever grids for the world's finest publications.</p>
+            <div class="hero-actions">
+                <a href="#published" class="btn btn-gold">View Published Work</a>
+
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Signature Themes Section -->
-  <section id="themes" class="section themes reveal">
-    <span class="eyebrow centered">Specialties</span>
-    <h2 class="centered">Signature Styles</h2>
-    <div class="theme-grid">
-      <div class="theme-card">
-        <img src="https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?q=80&w=400&auto=format&fit=crop"
-          alt="Rebus Riddles" class="theme-img">
-        <h3>Rebus Riddles</h3>
-        <p>Puzzles that incorporate images or symbols into the grid.</p>
-      </div>
-      <div class="theme-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4RTPobbWzI0JQcNbXgQYYL-0ctul_7D-QGw&s"
-          alt="Wordplay Wonders" class="theme-img">
-        <h3>Wordplay Wonders</h3>
-        <p>Clever puns and double-entendres that reward lateral thinking.</p>
-      </div>
-      <div class="theme-card">
-        <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5DjNZEFIJhoq87IxjAxRloocgk1HkqVNEHQ&s"
-          alt="Pop Culture Crosses" class="theme-img">
-        <h3>Pop Culture Crosses</h3>
-        <p>Themed puzzles focused on modern media and trends.</p>
-      </div>
-      <div class="theme-card">
-        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=400&auto=format&fit=crop"
-          alt="Event Specials" class="theme-img">
-        <h3>Event Specials</h3>
-        <p>Custom grids designed for weddings, birthdays, and corporate galas.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. The Process Section -->
-  <section id="process" class="section process reveal">
-    <span class="eyebrow centered">Workflow</span>
-    <h2 class="centered">The Grid's Journey</h2>
-    <div class="process-steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h3>The Concept</h3>
-        <p>Finding a unique hook or theme that anchors the entire experience.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h3>Grid Construction</h3>
-        <p>Strategically placing black squares to ensure maximum "cross-ability".</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h3>Clue Crafting</h3>
-        <p>Writing witty, accurate clues that match the intended difficulty.</p>
-      </div>
-    </div>
-    <div class="process-image">
-      <img
-        src="https://images.unsplash.com/photo-1622228872091-94cddc5dc467?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt="Process Sketch" class="glass-image">
-    </div>
-  </section>
-
-  <!-- 7. Spotlight Section -->
-  <section id="spotlight" class="section spotlight reveal">
-    <div class="section-grid reverse">
-      <div class="text-content">
-        <span class="eyebrow">Featured Work</span>
-        <h2>The "Pangram" Challenge</h2>
-        <p>A deep dive into one of my most complex constructions—a puzzle where every single letter of the alphabet was
-          used at least once in across and down answers.</p>
-        <a href="#" class="btn btn-small">Read Case Study</a>
-      </div>
-      <div class="image-box">
-        <img
-          src=" https://thumbs.dreamstime.com/b/crossword-puzzle-game-kids-working-tools-educational-page-children-to-study-english-language-words-printable-181187577.jpg"
-          alt="Tools of the Trade" class="glass-image">
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. Interactive Demo Section -->
-  <section id="demo" class="section demo-section reveal">
-    <span class="eyebrow centered">Play</span>
-    <h2 class="centered">Interactive Mini Puzzle</h2>
-    <p class="demo-desc centered">Try your hand at this 5×5 mini. Type letters — it will auto-advance.</p>
-
-    <div class="crossword-container">
-      <div id="crossword-grid" class="crossword-grid"></div>
-
-      <div class="clues">
-        <h3>Across</h3>
-        <ul id="across-clues"></ul>
-        <h3>Down</h3>
-        <ul id="down-clues"></ul>
-      </div>
-    </div>
-
-    <div class="demo-controls">
-      <div id="nav-controls">
-        <button onclick="prevPuzzle()" class="btn btn-outline btn-nav">← Prev</button>
-        <span id="puzzle-progress">1 / 4</span>
-        <button onclick="nextPuzzle()" class="btn btn-outline btn-nav">Next →</button>
-      </div>
-      <div class="action-btns">
-        <button onclick="checkAnswers()" class="btn check-btn">Check Answers</button>
-        <button onclick="resetPuzzle()" class="btn btn-outline">Reset Puzzle</button>
-      </div>
-    </div>
-    <p id="result-msg" class="result"></p>
-  </section>
-
-  <!-- 9. Cruciverbalist Insights Section -->
-  <section id="insights" class="section insights reveal">
-    <div class="section-grid">
-      <div class="text-content">
-        <span class="eyebrow">Expertise</span>
-        <h2>Cruciverbalist Insights</h2>
-        <div class="insight-posts">
-          <div class="post">
-            <h4>The Secret to a Good Pun</h4>
-            <p>Why lateral thinking is the most important skill for a puzzle solver...</p>
-          </div>
-          <div class="post">
-            <h4>Grid Compression 101</h4>
-            <p>How to handle high-density theme blocks without sacrificing flow.</p>
-          </div>
+        <div class="hero-scroll-hint" aria-hidden="true">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
         </div>
-      </div>
-      <div class="image-box">
-        <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM0goGRNdHBxySnNsvGLQGd3TdEx7p33kxoQ&s"
-          alt="Insights" class="glass-image">
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- 10. Testimonials Section -->
-  <section id="testimonials" class="section testimonials reveal">
-    <div class="bg-blur" style="background-image: url('premium_study_background_1774674446020.png')"></div>
-    <div class="testimonial-content centered">
-      <span class="eyebrow">Reviews</span>
-      <h2 class="white-text">Player Feedback</h2>
-      <div class="testimonial-slider">
-        <p class="quote">"The cleverest clues I've seen in the Sunday editions. Truly a master of the craft."</p>
-        <p class="author">— Jane Doe, Associate Editor</p>
-      </div>
-    </div>
-  </section>
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" class="section about reveal">
+        <div class="container">
+            <div class="about-layout">
+                <div class="about-photo-col">
+                    <div class="about-photo-frame">
+                        <img src="author_portrait_1776662115723.png" alt="The Constructor — a cruciverbalist at work"
+                            class="about-photo">
+                        <div class="photo-grid-deco" aria-hidden="true">
+                            <span class="pgd-cell d"></span><span class="pgd-cell l"></span><span
+                                class="pgd-cell d"></span>
+                            <span class="pgd-cell l"></span><span class="pgd-cell d"></span><span
+                                class="pgd-cell l"></span>
+                            <span class="pgd-cell d"></span><span class="pgd-cell l"></span><span
+                                class="pgd-cell d"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text-col">
+                    <span class="eyebrow">The Constructor</span>
+                    <h2 class="about-name">The Human Behind the Grid</h2>
+                    <p class="about-bio">A dedicated cruciverbalist with over a decade of experience crafting intricate
+                        wordplay puzzles for national newspapers and digital platforms worldwide. The mission: blend
+                        logic, trivia, and wit into seamless experiences that challenge and delight solvers across the
+                        globe.</p>
+                    <blockquote class="pull-quote">
+                        <p>"From the New York Times to independent zines — every grid is a journey."</p>
+                    </blockquote>
+                    <p class="about-bio">Grids are praised for their tightness, original themes, and those precious
+                        "Aha!" moments — the ones that make solvers put down their pencils and smile. Published across
+                        15 major outlets, with 500 puzzles and counting.</p>
 
-  <!-- 11. Trusted By Section -->
-  <section id="clients" class="section clients reveal">
-    <h3 class="centered">Trusted By Elite Publications</h3>
-    <div class="client-grid">
-      <div class="client-logo">NYT</div>
-      <div class="client-logo">LAT</div>
-      <div class="client-logo">WSJ</div>
-      <div class="client-logo">Vulture</div>
-    </div>
-  </section>
-
-  <!-- 12. Pricing Section -->
-  <section id="pricing" class="section pricing reveal">
-    <span class="eyebrow centered">Work With Me</span>
-    <h2 class="centered">Service Packages</h2>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <h3>Standard Mini</h3>
-        <p class="price">$150</p>
-        <ul>
-          <li>5x5 or 7x7 Grid</li>
-          <li>Digital & Print Format</li>
-          <li>1 Revision</li>
-        </ul>
-        <a href="#commission" class="btn btn-small">Order Now</a>
-      </div>
-      <div class="price-card featured">
-        <div class="badge">Most Popular</div>
-        <h3>Themed 15x15</h3>
-        <p class="price">$450</p>
-        <ul>
-          <li>Standard Weekday Size</li>
-          <li>Unique Theme Hook</li>
-          <li>3 Revisions</li>
-        </ul>
-        <a href="#commission" class="btn btn-small">Order Now</a>
-      </div>
-      <div class="price-card">
-        <h3>Custom Event</h3>
-        <p class="price">From $600</p>
-        <ul>
-          <li>Bespoke Personal Clues</li>
-          <li>Hand-Designed Layout</li>
-          <li>Framed Print Included</li>
-        </ul>
-        <a href="#commission" class="btn btn-small">Order Now</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 13. FAQ Section -->
-  <section id="faq" class="section faq reveal">
-    <span class="eyebrow centered">Q&A</span>
-    <h2 class="centered">Frequently Asked Questions</h2>
-    <div class="faq-container">
-      <div class="faq-item">
-        <button class="faq-question">How long does it take to construct a 15x15 grid? <span>+</span></button>
-        <div class="faq-answer">Typically 10-15 hours for the grid and clues, depending on theme complexity.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">Do you support cryptic crosswords? <span>+</span></button>
-        <div class="faq-answer">Yes, I specialize in both American-style and British Cryptic puzzles.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">Can I use your puzzles for my website? <span>+</span></button>
-        <div class="faq-answer">Absolutely. I offer digital licensing for single puzzles or recurring series.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 14. Commission Section -->
-  <section id="commission" class="section commission reveal">
-    <div class="commission-box glass">
-      <h2>Commission a Puzzle</h2>
-      <p>Ready to challenge your audience or surprise a loved one? Let's build something witty together.</p>
-      <form class="commission-form">
-        <div class="form-row">
-          <input type="text" placeholder="Your Name" required>
-          <input type="email" placeholder="Your Email" required>
+                    <!-- Stat Counters integrated into About -->
+                    <div class="about-stats" id="stats">
+                        <div class="astat">
+                            <span class="astat-num" data-target="500">0</span>
+                            <span class="astat-label">Puzzles Published</span>
+                        </div>
+                        <div class="astat">
+                            <span class="astat-num" data-target="25000">0</span>
+                            <span class="astat-label">Clues Crafted</span>
+                        </div>
+                        <div class="astat">
+                            <span class="astat-num" data-target="15">0</span>
+                            <span class="astat-label">Major Publications</span>
+                        </div>
+                        <div class="astat">
+                            <span class="astat-num" data-target="100">0</span>
+                            <span class="astat-label">% Hand-Crafted</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <select>
-          <option>Standard Mini</option>
-          <option>Themed 15x15</option>
-          <option>Custom Event</option>
-        </select>
-        <textarea placeholder="Tell me about your theme idea..."></textarea>
-        <button type="submit" class="btn">Send Inquiry</button>
-      </form>
-    </div>
-  </section>
+    </section>
 
-  <!-- 15. Footer Section -->
-  <footer id="contact" class="reveal">
-    <div class="footer-container">
-      <div class="footer-column brand">
-        <a href="#home" class="logo-link">
-          <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-            <rect fill="#ffd700" width="32" height="32" rx="6"/>
-            <rect fill="#000" x="2" y="2" width="8" height="8"/>
-            <rect fill="#000" x="12" y="2" width="8" height="8"/>
-            <rect fill="#000" x="22" y="2" width="8" height="8"/>
-            <rect fill="#000" x="2" y="12" width="8" height="8"/>
-            <rect fill="#000" x="12" y="12" width="8" height="8"/>
-            <rect fill="#000" x="22" y="12" width="8" height="8"/>
-            <rect fill="#000" x="2" y="22" width="8" height="8"/>
-            <rect fill="#000" x="12" y="22" width="8" height="8"/>
-            <rect fill="#000" x="22" y="22" width="8" height="8"/>
-            <rect fill="#ffd700" x="6" y="6" width="4" height="4"/>
-            <rect fill="#ffd700" x="16" y="6" width="4" height="4"/>
-            <rect fill="#ffd700" x="26" y="6" width="4" height="4"/>
-            <rect fill="#ffd700" x="6" y="16" width="4" height="4"/>
-            <rect fill="#ffd700" x="16" y="16" width="4" height="4"/>
-            <rect fill="#ffd700" x="26" y="16" width="4" height="4"/>
-            <rect fill="#ffd700" x="6" y="26" width="4" height="4"/>
-            <rect fill="#ffd700" x="16" y="26" width="4" height="4"/>
-            <rect fill="#ffd700" x="26" y="26" width="4" height="4"/>
-          </svg>
-          <span class="logo">Cross Purposes</span>
-        </a>
-        <p>Crafting premium cruciverbalism for elite publications and private events worldwide. Every grid is a journey,
-          every clue a discovery.</p>
-        <div class="social-icons">
-          <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <!-- ===================== PUBLISHED WORK ===================== -->
+    <section id="published" class="section published reveal">
+        <div class="container">
+            <span class="eyebrow centered">Portfolio</span>
+            <h2 class="section-title centered">Published Work</h2>
+            <p class="section-sub centered">Selected from a decade of constructions across the world's most discerning
+                publications.</p>
+            <div class="pub-grid">
+                <article class="pub-card">
+                    <div class="pub-card-meta">
+                        <span class="pub-badge">The Sunday Times</span>
+                        <span class="pub-type">Jumbo Special</span>
+                    </div>
+                    <h3 class="pub-title">The Sunday Times Jumbo</h3>
+                    <p class="pub-desc">A 23×23 giant packed with interlocking theme entries around British cultural
+                        touchstones — from the West End to Wembley. Editors called it "the most satisfying Saturday in
+                        years."</p>
+                    <div class="pub-card-footer">
+                        <span class="pub-clue-count"><i class="fas fa-th"></i> 23×23 Grid · 132 Clues</span>
+                        <a href="#commission" class="btn btn-small btn-gold-outline">View Puzzle</a>
+                    </div>
+                </article>
+
+                <article class="pub-card pub-card-featured">
+                    <div class="pub-card-meta">
+                        <span class="pub-badge">New York Times</span>
+                        <span class="pub-type">Daily Mini Series</span>
+                    </div>
+                    <h3 class="pub-title">Daily Mini Puzzles</h3>
+                    <p class="pub-desc">A recurring series of 5×5 and 7×7 miniatures with razor-sharp themes — each
+                        solvable in under three minutes yet packing enough wit to leave solvers grinning through the
+                        morning commute.</p>
+                    <div class="pub-card-footer">
+                        <span class="pub-clue-count"><i class="fas fa-th"></i> 5×5 · 7×7 Formats</span>
+                        <a href="#commission" class="btn btn-small btn-gold-outline">View Puzzle</a>
+                    </div>
+                </article>
+
+                <article class="pub-card">
+                    <div class="pub-card-meta">
+                        <span class="pub-badge">WSJ Weekend</span>
+                        <span class="pub-type">Event Commission</span>
+                    </div>
+                    <h3 class="pub-title">Special Event Grids</h3>
+                    <p class="pub-desc">Bespoke constructions for weddings, anniversaries, and corporate galas. Each
+                        grid tells a unique story with personal clues, hidden messages, and surprises woven through
+                        every answer.</p>
+                    <div class="pub-card-footer">
+                        <span class="pub-clue-count"><i class="fas fa-th"></i> Custom Sizes</span>
+                        <a href="#commission" class="btn btn-small btn-gold-outline">View Puzzle</a>
+                    </div>
+                </article>
+            </div>
         </div>
-      </div>
-      <div class="footer-column">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About Me</a></li>
-          <li><a href="#puzzles">Portfolio</a></li>
-          <li><a href="#demo">Try Demo</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="#pricing">Standard Mini</a></li>
-          <li><a href="#pricing">Themed 15x15</a></li>
-          <li><a href="#pricing">Custom Event</a></li>
-          <li><a href="#commission">Commission</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Contact</h4>
-        <ul class="contact-info">
-          <li><i class="fas fa-envelope"></i> hello@crosspurposes.com</li>
-          <li><i class="fas fa-phone"></i> +91 98765 43210</li>
-          <li><i class="fas fa-map-marker-alt"></i> Chennai, TN, India</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026. All rights reserved.</p>
-      <div class="footer-bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-      </div>
-    </div>
-  </footer>
+    </section>
 
-  <!-- Lightbox -->
-  <div id="lightbox" onclick="this.style.display='none'"></div>
+    <!-- ===================== SPECIALTIES ===================== -->
+    <section id="specialties" class="section specialties reveal">
+        <div class="container">
+            <span class="eyebrow centered">Specialties</span>
+            <h2 class="section-title centered">Signature Styles</h2>
+            <div class="specialty-grid">
+                <div class="specialty-card">
+                    <div class="specialty-img-wrap">
+                        <img src="specialty_rebus.png" alt="Rebus Riddles example">
+                    </div>
+                    <div class="specialty-content">
+                        <h3>Rebus Riddles</h3>
+                        <p>Puzzles that incorporate symbols and visual shorthand directly into the grid — a signature
+                            flourish that surprises even seasoned solvers.</p>
+                    </div>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-img-wrap">
+                        <img src="specialty_wordplay.png" alt="Wordplay Wonders imagery">
+                    </div>
+                    <div class="specialty-content">
+                        <h3>Wordplay Wonders</h3>
+                        <p>Clever puns, double-entendres, and lateral twists that reward solvers who think sideways. The
+                            clue should always earn its smile.</p>
+                    </div>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-img-wrap">
+                        <img src="specialty_popculture.png" alt="Pop Culture Crosses theme">
+                    </div>
+                    <div class="specialty-content">
+                        <h3>Pop Culture Crosses</h3>
+                        <p>Themed constructions woven around modern media, music, and culture — fresh, relevant, and
+                            built to spark that satisfying flash of recognition.</p>
+                    </div>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-img-wrap">
+                        <img src="specialty_event.png" alt="Event Specials celebration">
+                    </div>
+                    <div class="specialty-content">
+                        <h3>Event Specials</h3>
+                        <p>Custom grids designed for weddings, birthdays, and corporate galas. The ultimate bespoke gift
+                            for someone who has everything — except their name in a crossword.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <button id="back-to-top" title="Back to Top">
-    <i data-lucide="chevron-up"></i>
-  </button>
+    <!-- ===================== PROCESS ===================== -->
+    <section id="process" class="section process reveal">
+        <div class="container">
+            <span class="eyebrow centered">Workflow</span>
+            <h2 class="section-title centered">The Grid's Journey</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="ps-num">01</div>
+                    <div class="ps-connector" aria-hidden="true"></div>
+                    <div class="ps-body">
+                        <h3>The Concept</h3>
+                        <p>Every great puzzle begins with a hook — a theme that lets the grid tell a story. Finding that
+                            anchor is the most creative, and most demanding, part of the work.</p>
+                    </div>
+                </div>
+                <div class="process-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></div>
+                <div class="process-step">
+                    <div class="ps-num">02</div>
+                    <div class="ps-connector" aria-hidden="true"></div>
+                    <div class="ps-body">
+                        <h3>Grid Construction</h3>
+                        <p>Placing black squares with surgical precision to maximise "cross-ability" while letting the
+                            theme entries breathe. A labour of logic and craft.</p>
+                    </div>
+                </div>
+                <div class="process-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></div>
+                <div class="process-step">
+                    <div class="ps-num">03</div>
+                    <div class="ps-connector" aria-hidden="true"></div>
+                    <div class="ps-body">
+                        <h3>Clue Crafting</h3>
+                        <p>Writing witty, accurate clues matched to the intended difficulty level. Each clue is revised
+                            until it is simultaneously fair, clever, and impossible to forget.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script src="script.js"></script>
+    <!-- ===================== TESTIMONIALS & TRUSTED BY ===================== -->
+    <section id="testimonials" class="section testimonials reveal">
+        <div class="testi-bg" aria-hidden="true"></div>
+        <div class="container testi-container">
+            <span class="eyebrow centered light-eyebrow">Reviews</span>
+            <h2 class="section-title centered light-title">What Editors Say</h2>
+            <div class="testi-card">
+                <div class="testi-quote-mark" aria-hidden="true">"</div>
+                <p class="testi-text">The cleverest clues I've seen in the Sunday editions. Truly a master of the craft
+                    — the grids are tight, the themes inspired, and the solving experience unlike anything else we
+                    publish.</p>
+                <footer class="testi-author">
+                    <div class="testi-author-dot"></div>
+                    <span>Jane Doe, Associate Editor</span>
+                </footer>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By -->
+    <section id="clients" class="section clients reveal">
+        <div class="container">
+            <p class="clients-label">Trusted By Elite Publications</p>
+            <div class="client-logos">
+                <div class="client-logo">
+                    <span class="cl-abbr">NYT</span>
+                    <span class="cl-name">New York Times</span>
+                </div>
+                <div class="client-logo">
+                    <span class="cl-abbr">LAT</span>
+                    <span class="cl-name">LA Times</span>
+                </div>
+                <div class="client-logo">
+                    <span class="cl-abbr">WSJ</span>
+                    <span class="cl-name">Wall Street Journal</span>
+                </div>
+                <div class="client-logo">
+                    <span class="cl-abbr">VLT</span>
+                    <span class="cl-name">Vulture</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PRICING ===================== -->
+    <section id="pricing" class="section pricing reveal">
+        <div class="container">
+            <span class="eyebrow centered">Work With Me</span>
+            <h2 class="section-title centered">Service Packages</h2>
+            <p class="section-sub centered">Every puzzle is handcrafted from scratch. No templates, no shortcuts, no
+                compromises.</p>
+            <div class="pricing-grid">
+
+                <div class="price-card">
+                    <div class="pc-header">
+                        <h3 class="pc-name">Standard Mini</h3>
+                        <div class="pc-price">
+                            <span class="pc-amount">$150</span>
+                        </div>
+                    </div>
+                    <ul class="pc-features">
+                        <li><i class="fas fa-check"></i> 5×5 or 7×7 Grid</li>
+                        <li><i class="fas fa-check"></i> Digital &amp; Print Format</li>
+                        <li><i class="fas fa-check"></i> Original Theme Hook</li>
+                        <li><i class="fas fa-check"></i> 1 Round of Revisions</li>
+                        <li><i class="fas fa-check"></i> Delivery in 5 Business Days</li>
+                    </ul>
+                    <a href="#commission" class="btn btn-outline-navy pc-btn">Order Now</a>
+                </div>
+
+                <div class="price-card price-card-featured">
+                    <div class="pc-badge">Most Popular</div>
+                    <div class="pc-header">
+                        <h3 class="pc-name">Themed 15×15</h3>
+                        <div class="pc-price">
+                            <span class="pc-amount">$450</span>
+                        </div>
+                    </div>
+                    <ul class="pc-features">
+                        <li><i class="fas fa-check"></i> Standard Weekday Size</li>
+                        <li><i class="fas fa-check"></i> Unique Theme Hook</li>
+                        <li><i class="fas fa-check"></i> Publication-Ready Format</li>
+                        <li><i class="fas fa-check"></i> 3 Rounds of Revisions</li>
+                        <li><i class="fas fa-check"></i> Delivery in 10 Business Days</li>
+                    </ul>
+                    <a href="#commission" class="btn btn-gold pc-btn">Order Now</a>
+                </div>
+
+                <div class="price-card">
+                    <div class="pc-header">
+                        <h3 class="pc-name">Custom Event</h3>
+                        <div class="pc-price">
+                            <span class="pc-amount">From $600</span>
+                        </div>
+                    </div>
+                    <ul class="pc-features">
+                        <li><i class="fas fa-check"></i> Bespoke Personal Clues</li>
+                        <li><i class="fas fa-check"></i> Hand-Designed Layout</li>
+                        <li><i class="fas fa-check"></i> Hidden Messages &amp; Surprises</li>
+                        <li><i class="fas fa-check"></i> Unlimited Revisions</li>
+                        <li><i class="fas fa-check"></i> Framed Print Included</li>
+                    </ul>
+                    <a href="#commission" class="btn btn-outline-navy pc-btn">Order Now</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== INTERACTIVE DEMO ===================== -->
+    <section id="demo" class="section demo-section reveal">
+        <div class="container">
+            <span class="eyebrow centered">Try It Yourself</span>
+            <h2 class="section-title centered" id="puzzle-title-display">Puzzle 1: The Greeting</h2>
+            <p class="section-sub centered">Type into the grid — it auto-advances. Use arrow keys to navigate. Can you
+                solve all four?</p>
+
+            <div class="crossword-wrapper">
+                <div class="crossword-area">
+                    <div id="crossword-grid" class="crossword-grid"></div>
+                    <div class="demo-controls">
+                        <div class="demo-nav">
+                            <button onclick="prevPuzzle()" class="btn btn-outline-navy btn-nav" id="prev-btn">←
+                                Prev</button>
+                            <span class="puzzle-progress" id="puzzle-progress">1 / 4</span>
+                            <button onclick="nextPuzzle()" class="btn btn-outline-navy btn-nav" id="next-btn">Next
+                                →</button>
+                        </div>
+                        <div class="demo-actions">
+                            <button onclick="checkAnswers()" class="btn btn-gold">Check Answers</button>
+                            <button onclick="resetPuzzle()" class="btn btn-outline-navy">Reset</button>
+                        </div>
+                    </div>
+                    <p id="result-msg" class="result-msg"></p>
+                </div>
+
+                <div class="clues-area">
+                    <div class="clue-group">
+                        <h4 class="clue-heading"><span class="clue-arrow">→</span> Across</h4>
+                        <ul id="across-clues" class="clue-list"></ul>
+                    </div>
+                    <div class="clue-group">
+                        <h4 class="clue-heading"><span class="clue-arrow">↓</span> Down</h4>
+                        <ul id="down-clues" class="clue-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section id="faq" class="section faq reveal">
+        <div class="container">
+            <span class="eyebrow centered">Q&amp;A</span>
+            <h2 class="section-title centered">Frequently Asked Questions</h2>
+            <div class="faq-list">
+
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>How long does it take to construct a 15×15 grid?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Typically 10–15 hours for grid and clues combined, depending on theme complexity. Rush
+                            commissions are available for an additional fee — contact me to discuss your deadline.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Do you support cryptic crosswords?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes — I specialise in both American-style thematics and British Cryptic puzzles. Each style
+                            has its own grammar and I'm fluent in both. Just specify your preference when commissioning.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Can I use your puzzles for my website or publication?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Absolutely. I offer digital licensing for single puzzles or recurring series. Rates depend on
+                            audience size and exclusivity. Let's talk — send me a brief and I'll put together a
+                            licensing proposal.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>What formats do you deliver in?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="faq-a">
+                        <p>All puzzles are delivered in print-ready PDF, interactive web format (HTML/JS), and .puz
+                            format (compatible with Across Lite and most crossword software). Print files are at 300dpi
+                            for professional printing.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== COMMISSION FORM ===================== -->
+    <section id="commission" class="section commission reveal">
+        <div class="container">
+            <div class="commission-wrap">
+                <div class="commission-intro">
+                    <span class="eyebrow">Get In Touch</span>
+                    <h2>Commission a Puzzle</h2>
+                    <p>Ready to challenge your audience or surprise someone special? Every commission begins with a
+                        conversation. Tell me about your vision and I'll craft something unforgettable.</p>
+                    <ul class="commission-promises">
+                        <li><i class="fas fa-check-circle"></i> Response within 24 hours</li>
+                        <li><i class="fas fa-check-circle"></i> Free initial consultation</li>
+                        <li><i class="fas fa-check-circle"></i> No commitment until you approve</li>
+                    </ul>
+                </div>
+                <form class="commission-form" id="commission-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cf-name">Your Name</label>
+                            <input type="text" id="cf-name" name="name" placeholder="e.g. Alex Morgan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cf-email">Email Address</label>
+                            <input type="email" id="cf-email" name="email" placeholder="hello@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cf-package">Package</label>
+                        <select id="cf-package" name="package" required>
+                            <option value="" disabled selected>Select a package…</option>
+                            <option value="mini">Standard Mini — $150</option>
+                            <option value="themed">Themed 15×15 — $450</option>
+                            <option value="event">Custom Event — From $600</option>
+                            <option value="other">Something else — let's talk</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cf-message">Your Theme Idea</label>
+                        <textarea id="cf-message" name="message" rows="4"
+                            placeholder="Tell me about your theme, occasion, publication, or deadline…"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-gold btn-full">Send Inquiry <i
+                            class="fas fa-arrow-right"></i></button>
+                    <p class="form-note">No spam. Your information is never shared.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer id="contact" class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#home" class="footer-logo">Cross <em>Purposes</em></a>
+                    <p class="footer-tagline">Crafting clever grids for the world's finest publications. Every grid is a
+                        journey; every clue a discovery.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Twitter / X"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Me</a></li>
+                        <li><a href="#published">Published Work</a></li>
+                        <li><a href="#demo">Try a Puzzle</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#pricing">Standard Mini</a></li>
+                        <li><a href="#pricing">Themed 15×15</a></li>
+                        <li><a href="#pricing">Custom Event</a></li>
+                        <li><a href="#commission">Commission a Puzzle</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> hello@crosspurposes.com</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Chennai, TN, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cross Purposes. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" aria-label="Back to top" title="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
