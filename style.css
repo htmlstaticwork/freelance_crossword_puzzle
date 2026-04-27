@@ -329,6 +329,9 @@ h1, h2, h3, h4 {
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
+[data-theme="dark"] .hamburger span { background: var(--gold); }
+[data-theme="dark"] .navbar.scrolled .hamburger span { background: var(--gold); }
+
 /* Mobile Drawer */
 .mobile-drawer {
   position: fixed;
@@ -1703,6 +1706,7 @@ h1, h2, h3, h4 {
 /* ── Tablet ──────────────────────────────────────── */
 @media (max-width: 1024px) {
   .nav-links { display: none; }
+  .nav-toggle { display: none; }
   .hamburger { display: flex; }
   .navbar.scrolled .hamburger span { background: var(--text); }
 
